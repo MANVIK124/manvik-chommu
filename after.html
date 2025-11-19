@@ -1,0 +1,851 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative Party Invitation</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Righteous&family=Poppins:wght@600;800&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #0a0a0a;
+        overflow: hidden;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .stage {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      /* ========== SCENE 1: MORPHING LOCATION PIN ========== */
+      .scene1 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        animation: sceneAppear 5s forwards;
+      }
+
+      @keyframes sceneAppear {
+        0% {
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      /* Morphing location pin */
+      .location-morph {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        animation: morphLocationPin 4s ease-in-out infinite;
+        filter: drop-shadow(0 0 40px rgba(255, 107, 107, 0.8));
+      }
+
+      @keyframes morphLocationPin {
+        0%,
+        100% {
+          border-radius: 50% 50% 50% 0;
+          transform: rotate(-45deg) scale(1);
+          background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+        }
+        25% {
+          border-radius: 60% 40% 50% 50%;
+          transform: rotate(0deg) scale(1.2);
+          background: linear-gradient(135deg, #ee5a6f, #c44569);
+        }
+        50% {
+          border-radius: 50% 50% 0 50%;
+          transform: rotate(45deg) scale(1);
+          background: linear-gradient(135deg, #c44569, #ff6b6b);
+        }
+        75% {
+          border-radius: 40% 60% 50% 50%;
+          transform: rotate(90deg) scale(1.2);
+          background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+        }
+      }
+
+      /* Inner pulsing circle */
+      .pin-inner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        background: white;
+        border-radius: 50%;
+        animation: pinPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pinPulse {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 1;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.2);
+          opacity: 0.6;
+        }
+      }
+
+      /* Ripple effect around pin */
+      .ripple {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border: 3px solid #ff6b6b;
+        border-radius: 50%;
+        animation: rippleEffect 2s ease-out infinite;
+      }
+
+      @keyframes rippleEffect {
+        0% {
+          transform: scale(0.8);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(2.5);
+          opacity: 0;
+        }
+      }
+
+      .ripple:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+      .ripple:nth-child(3) {
+        animation-delay: 1s;
+      }
+
+      /* Venue text with liquid effect */
+      .venue-text {
+        position: absolute;
+        bottom: 20%;
+        text-align: center;
+        width: 100%;
+      }
+
+      .liquid-text {
+        font-size: 4rem;
+        font-family: "Righteous", cursive;
+        font-weight: 800;
+        background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: liquidFlow 3s ease infinite, textWave 2s ease-in-out infinite;
+        filter: drop-shadow(0 5px 20px rgba(255, 107, 107, 0.5));
+      }
+
+      @keyframes liquidFlow {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes textWave {
+        0%,
+        100% {
+          transform: scale(1) skewX(0deg);
+        }
+        25% {
+          transform: scale(1.05) skewX(-5deg);
+        }
+        75% {
+          transform: scale(1.05) skewX(5deg);
+        }
+      }
+
+      .location-name {
+        font-size: 2rem;
+        color: #fff;
+        margin-top: 10px;
+        animation: fadeInUp 1s 0.5s backwards;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ========== SCENE 2: CLOCK WITH PARTICLE EXPLOSION ========== */
+      .scene2 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        animation: sceneAppear 5s 5s forwards;
+      }
+
+      /* Animated clock */
+      .clock-container {
+        position: relative;
+        width: 300px;
+        height: 300px;
+      }
+
+      .clock-face {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: 15px solid rgba(255, 255, 255, 0.2);
+        position: relative;
+        animation: clockGlow 2s ease-in-out infinite;
+        box-shadow: 0 0 60px rgba(102, 126, 234, 0.6),
+          inset 0 0 40px rgba(255, 255, 255, 0.1);
+      }
+
+      @keyframes clockGlow {
+        0%,
+        100% {
+          box-shadow: 0 0 60px rgba(102, 126, 234, 0.6),
+            inset 0 0 40px rgba(255, 255, 255, 0.1);
+        }
+        50% {
+          box-shadow: 0 0 100px rgba(102, 126, 234, 1),
+            inset 0 0 60px rgba(255, 255, 255, 0.3);
+        }
+      }
+
+      /* Clock hands with realistic movement */
+      .clock-hand {
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        transform-origin: bottom center;
+        background: white;
+        border-radius: 10px 10px 0 0;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+      }
+
+      .hour-hand {
+        width: 8px;
+        height: 80px;
+        margin-left: -4px;
+        animation: hourRotate 8s linear infinite;
+      }
+
+      .minute-hand {
+        width: 6px;
+        height: 110px;
+        margin-left: -3px;
+        animation: minuteRotate 4s linear infinite;
+      }
+
+      @keyframes hourRotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes minuteRotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Clock center */
+      .clock-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 30px;
+        height: 30px;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 0 30px rgba(255, 255, 255, 1);
+        z-index: 10;
+      }
+
+      /* Time text with explosion effect */
+      .time-display {
+        position: absolute;
+        bottom: 15%;
+        width: 100%;
+        text-align: center;
+      }
+
+      .time-text {
+        font-size: 5rem;
+        font-weight: 800;
+        color: white;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+          0 0 40px rgba(102, 126, 234, 0.6), 0 5px 30px rgba(0, 0, 0, 0.5);
+        animation: timeExplode 2s ease-in-out infinite;
+      }
+
+      @keyframes timeExplode {
+        0%,
+        100% {
+          transform: scale(1);
+          letter-spacing: 0px;
+        }
+        50% {
+          transform: scale(1.1);
+          letter-spacing: 10px;
+        }
+      }
+
+      /* ========== SCENE 3: PROHIBITION SYMBOL WITH BOUNCING BOTTLES ========== */
+      .scene3 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        animation: sceneAppear 5s 10s forwards;
+      }
+
+      /* Animated prohibition sign */
+      .prohibition-sign {
+        width: 300px;
+        height: 300px;
+        position: relative;
+        animation: signSpin 3s ease-in-out infinite;
+      }
+
+      @keyframes signSpin {
+        0%,
+        100% {
+          transform: rotate(0deg) scale(1);
+        }
+        25% {
+          transform: rotate(-10deg) scale(1.1);
+        }
+        50% {
+          transform: rotate(0deg) scale(1);
+        }
+        75% {
+          transform: rotate(10deg) scale(1.1);
+        }
+      }
+
+      .prohibition-circle {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 20px solid #ff6348;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 99, 72, 0.2),
+          rgba(255, 99, 72, 0.4)
+        );
+        position: relative;
+        box-shadow: 0 0 60px rgba(255, 99, 72, 0.8),
+          inset 0 0 40px rgba(255, 99, 72, 0.3);
+        animation: prohibitionPulse 1.5s ease-in-out infinite;
+      }
+
+      @keyframes prohibitionPulse {
+        0%,
+        100% {
+          border-width: 20px;
+          box-shadow: 0 0 60px rgba(255, 99, 72, 0.8),
+            inset 0 0 40px rgba(255, 99, 72, 0.3);
+        }
+        50% {
+          border-width: 25px;
+          box-shadow: 0 0 100px rgba(255, 99, 72, 1),
+            inset 0 0 60px rgba(255, 99, 72, 0.5);
+        }
+      }
+
+      /* Diagonal slash */
+      .prohibition-slash {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 25px;
+        height: 280px;
+        background: #ff6348;
+        transform: translate(-50%, -50%) rotate(45deg);
+        border-radius: 20px;
+        box-shadow: 0 0 40px rgba(255, 99, 72, 0.8);
+        animation: slashGlow 1s ease-in-out infinite alternate;
+      }
+
+      @keyframes slashGlow {
+        from {
+          box-shadow: 0 0 40px rgba(255, 99, 72, 0.8);
+        }
+        to {
+          box-shadow: 0 0 80px rgba(255, 99, 72, 1);
+        }
+      }
+
+      /* Bouncing bottles */
+      .bottle {
+        position: absolute;
+        font-size: 3rem;
+        animation: bottleBounce 2s ease-in-out infinite;
+      }
+
+      @keyframes bottleBounce {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-100px) rotate(360deg);
+        }
+      }
+
+      .bottle:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .bottle:nth-child(2) {
+        top: 70%;
+        left: 15%;
+        animation-delay: 0.5s;
+      }
+      .bottle:nth-child(3) {
+        top: 30%;
+        right: 10%;
+        animation-delay: 1s;
+      }
+      .bottle:nth-child(4) {
+        bottom: 20%;
+        right: 15%;
+        animation-delay: 1.5s;
+      }
+
+      /* Rule text with shake effect */
+      .rule-text {
+        position: absolute;
+        bottom: 10%;
+        width: 100%;
+        text-align: center;
+      }
+
+      .shake-text {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: #ff6348;
+        text-shadow: 0 0 20px rgba(255, 99, 72, 0.8),
+          0 5px 30px rgba(0, 0, 0, 0.5);
+        animation: shakeText 0.5s ease-in-out infinite;
+      }
+
+      @keyframes shakeText {
+        0%,
+        100% {
+          transform: translateX(0) rotate(0deg);
+        }
+        25% {
+          transform: translateX(-10px) rotate(-2deg);
+        }
+        75% {
+          transform: translateX(10px) rotate(2deg);
+        }
+      }
+
+      /* ========== SCENE 4: FIREWORKS & CONFETTI CELEBRATION ========== */
+      .scene4 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        animation: sceneFinal 5s 15s forwards;
+      }
+
+      @keyframes sceneFinal {
+        0% {
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* Firework container */
+      .firework {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+      }
+
+      /* Hosts card with 3D flip */
+      .hosts-card {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        padding: 60px 80px;
+        border-radius: 30px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        transform-style: preserve-3d;
+        animation: cardFlip 3s ease-in-out infinite;
+      }
+
+      @keyframes cardFlip {
+        0%,
+        100% {
+          transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+        }
+        25% {
+          transform: perspective(1000px) rotateY(10deg) rotateX(5deg);
+        }
+        50% {
+          transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+        }
+        75% {
+          transform: perspective(1000px) rotateY(-10deg) rotateX(-5deg);
+        }
+      }
+
+      .party-icon {
+        font-size: 6rem;
+        animation: iconBounce 1s ease-in-out infinite;
+      }
+
+      @keyframes iconBounce {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-20px) scale(1.2);
+        }
+      }
+
+      .hosts-title {
+        font-size: 3rem;
+        font-weight: 800;
+        color: white;
+        margin: 20px 0;
+        text-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+      }
+
+      .hosts-names {
+        font-size: 4.5rem;
+        font-weight: 800;
+        font-family: "Righteous", cursive;
+        background: linear-gradient(45deg, #feca57, #ff9ff3, #48dbfb, #feca57);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: rainbowShift 3s ease infinite;
+      }
+
+      @keyframes rainbowShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Floating hearts */
+      .heart {
+        position: absolute;
+        font-size: 2rem;
+        animation: heartFloat 3s ease-in-out infinite;
+        opacity: 0.7;
+      }
+
+      @keyframes heartFloat {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        50% {
+          opacity: 0.7;
+        }
+        100% {
+          transform: translateY(-100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .heart:nth-child(1) {
+        left: 10%;
+        animation-delay: 0s;
+        animation-duration: 4s;
+      }
+      .heart:nth-child(2) {
+        left: 30%;
+        animation-delay: 1s;
+        animation-duration: 5s;
+      }
+      .heart:nth-child(3) {
+        left: 50%;
+        animation-delay: 0.5s;
+        animation-duration: 4.5s;
+      }
+      .heart:nth-child(4) {
+        left: 70%;
+        animation-delay: 1.5s;
+        animation-duration: 5.5s;
+      }
+      .heart:nth-child(5) {
+        left: 90%;
+        animation-delay: 2s;
+        animation-duration: 4s;
+      }
+
+      /* Background gradient animation */
+      .bg-gradient {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+        background-size: 400% 400%;
+        animation: gradientMove 15s ease infinite;
+        z-index: -1;
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage">
+      <div class="bg-gradient"></div>
+
+      <!-- Scene 1: Morphing Location -->
+      <div class="scene1">
+        <div class="ripple"></div>
+        <div class="ripple"></div>
+        <div class="ripple"></div>
+        <div class="location-morph">
+          <div class="pin-inner"></div>
+        </div>
+        <div class="venue-text">
+          <div class="liquid-text">VENUE</div>
+          <div class="location-name">Romeo Lane, Rajpur Road</div>
+        </div>
+      </div>
+
+      <!-- Scene 2: Animated Clock -->
+      <div class="scene2">
+        <div class="clock-container">
+          <div class="clock-face">
+            <div class="clock-hand hour-hand"></div>
+            <div class="clock-hand minute-hand"></div>
+            <div class="clock-center"></div>
+          </div>
+        </div>
+        <div class="time-display">
+          <div class="time-text">4:30 PM - 9:00 PM</div>
+        </div>
+      </div>
+
+      <!-- Scene 3: Prohibition with Bouncing Bottles -->
+      <div class="scene3">
+        <div class="bottle">🍺</div>
+        <div class="bottle">🍷</div>
+        <div class="bottle">🍾</div>
+        <div class="bottle">🥃</div>
+
+        <div class="prohibition-sign">
+          <div class="prohibition-circle">
+            <div class="prohibition-slash"></div>
+          </div>
+        </div>
+
+        <div class="rule-text">
+          <div class="shake-text">NO PRE-BOOZE!</div>
+        </div>
+      </div>
+
+      <!-- Scene 4: Celebration with Hosts -->
+      <div class="scene4">
+        <div class="heart">❤️</div>
+        <div class="heart">💜</div>
+        <div class="heart">💙</div>
+        <div class="heart">💚</div>
+        <div class="heart">💛</div>
+
+        <div class="hosts-card">
+          <div class="party-icon">🎉</div>
+          <div class="hosts-title">Hosted By</div>
+          <div class="hosts-names">Shaurya<br />&<br />Annantveer</div>
+        </div>
+      </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+      <source src="party-music.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script>
+      // Dynamic fireworks on scene 4
+      function createFirework() {
+        setTimeout(() => {
+          setInterval(() => {
+            const colors = [
+              "#ff6b6b",
+              "#4ecdc4",
+              "#ffe66d",
+              "#95e1d3",
+              "#ff9ff3",
+            ];
+            const container = document.querySelector(".scene4");
+
+            // Create firework explosion
+            for (let i = 0; i < 30; i++) {
+              const particle = document.createElement("div");
+              particle.className = "firework";
+              particle.style.background =
+                colors[Math.floor(Math.random() * colors.length)];
+              particle.style.left = Math.random() * 100 + "%";
+              particle.style.top = Math.random() * 100 + "%";
+
+              const angle = (Math.PI * 2 * i) / 30;
+              const velocity = 100 + Math.random() * 100;
+              const tx = Math.cos(angle) * velocity;
+              const ty = Math.sin(angle) * velocity;
+
+              particle.animate(
+                [
+                  { transform: "translate(0, 0) scale(1)", opacity: 1 },
+                  {
+                    transform: `translate(${tx}px, ${ty}px) scale(0)`,
+                    opacity: 0,
+                  },
+                ],
+                {
+                  duration: 1000 + Math.random() * 1000,
+                  easing: "cubic-bezier(0, 0.9, 0.57, 1)",
+                }
+              ).onfinish = () => particle.remove();
+
+              container.appendChild(particle);
+            }
+          }, 2000);
+        }, 15000);
+      }
+
+      // Create confetti burst
+      function confettiBurst() {
+        setTimeout(() => {
+          const container = document.querySelector(".stage");
+          for (let i = 0; i < 150; i++) {
+            const confetti = document.createElement("div");
+            confetti.style.position = "absolute";
+            confetti.style.width = Math.random() * 10 + 5 + "px";
+            confetti.style.height = Math.random() * 10 + 5 + "px";
+            confetti.style.background = [
+              "#ff6b6b",
+              "#4ecdc4",
+              "#ffe66d",
+              "#95e1d3",
+              "#ff9ff3",
+            ][Math.floor(Math.random() * 5)];
+            confetti.style.left = Math.random() * 100 + "%";
+            confetti.style.top = "-10px";
+            confetti.style.borderRadius = Math.random() > 0.5 ? "50%" : "0";
+
+            confetti.animate(
+              [
+                {
+                  transform: "translateY(0) rotate(0deg)",
+                  opacity: 1,
+                },
+                {
+                  transform: `translateY(${
+                    window.innerHeight + 100
+                  }px) rotate(${Math.random() * 1440}deg)`,
+                  opacity: 0,
+                },
+              ],
+              {
+                duration: Math.random() * 3000 + 3000,
+                delay: Math.random() * 1000,
+              }
+            ).onfinish = () => confetti.remove();
+
+            container.appendChild(confetti);
+          }
+        }, 15000);
+      }
+
+      createFirework();
+      confettiBurst();
+
+      // Music autoplay
+      document.addEventListener(
+        "click",
+        () => {
+          document
+            .getElementById("bgMusic")
+            .play()
+            .catch((e) => console.log("Audio blocked"));
+        },
+        { once: true }
+      );
+
+      // Loop
+      setTimeout(() => location.reload(), 20000);
+    </script>
+  </body>
+</html>
